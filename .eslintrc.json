@@ -30,6 +30,7 @@
     "linebreak-style": 0,
     "max-len": ["warn", { "code": 100 }],
     "no-shadow": "off",
+    "no-restricted-syntax": "off",
     "react/button-has-type": [0, {}]
   }
 }

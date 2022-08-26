@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  cities: [],
+  cities: {},
+  citiesList: [],
+  citiesTable: [],
   loading: false,
   error: null,
   search: '',
@@ -18,21 +20,15 @@ export const searchSlice = createSlice({
         state[keys[i]] = values[i];
       }
     },
-
-    changeSearchField: (state, action) => {
-      const { search } = action.payload;
-      if (search !== '') {
-        state.search = search;
-      }
-      state.search = search;
-      state.skills = [];
+    changeCitiesTable(state, { payload }) {
+      state.citiesTable.push(payload.cityObj);
     },
+
   },
 });
 
 export const {
-  progressRequest, searchFailure, searchSuccess,
-  changeSearchField, setField,
+  setField, changeCitiesTable,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

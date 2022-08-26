@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeSearchField } from '../../features/search/searchSlice';
 import Loader from '../loader/Loader';
 import Popup from '../popup/Popup';
+import fetchSitiesThunkCreator from '../../thunks/fetchSitiesThunk';
 import './app.scss';
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
 
   const handelOnChange = (value) => {
     setSearchQuery(value);
-    dispatch(changeSearchField({ search: value }));
+    dispatch(fetchSitiesThunkCreator(value));
   };
 
   return (
@@ -24,13 +25,18 @@ export default function App() {
       {loader}
       {popup}
       <div>Начните вводить название города</div>
-      <input
+      <div>
+        <input
         type="text"
         className="serchString"
         value={searchQuery}
         onChange={(e) => handelOnChange(e.target.value)}
-      />
+        />
+        
+    </div>
+      
     </div>
 
   );
 }
+// KIyrDT5b5883Ys48bDljeWMPqty6kkHF
