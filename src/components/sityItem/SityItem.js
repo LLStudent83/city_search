@@ -1,14 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import addSityInTableSitiesThunkCreator from '../../thunks/addSityInTableSitiesThunk';
 
 export default function SityItem({ sityFullName, id }) {
+  // const cities = useSelector((state) => state.cities);
   const dispatch = useDispatch();
-  const handlerClick = () => {
+  function handlerClick(id) {
     dispatch(addSityInTableSitiesThunkCreator(id));
-  };
+  }
   return (
     <li className="sityItem">
       <button onClick={() => handlerClick(id)}>
@@ -20,5 +21,5 @@ export default function SityItem({ sityFullName, id }) {
 
 SityItem.propTypes = {
   sityFullName: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };

@@ -9,7 +9,13 @@ export default function SitiesList() {
     <div className="sitiesList">
       <ul>
         {
-            citiesList.map((obj) => <SityItem id={obj.id} sityFullName={obj.full_name} />)
+          citiesList.map((obj) => (
+            <SityItem
+              key={obj.id}
+              id={obj.id}
+              sityFullName={obj.full_name}
+            />
+          ))
         }
 
       </ul>

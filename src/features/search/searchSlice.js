@@ -4,6 +4,7 @@ const initialState = {
   cities: {},
   citiesList: [],
   citiesTable: [],
+  inputValue: '',
   loading: false,
   error: null,
   search: '',
