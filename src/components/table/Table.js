@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import useTable from 'react-table';
+import { useTable } from 'react-table';
 import { useSelector } from 'react-redux';
 
 export default function Table() {
@@ -35,17 +35,57 @@ export default function Table() {
     },
   ], []);
 
+  const tableSities = useTable({ columns, data });
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = tableSities;
+  // eslint-disable-next-line max-len
+  console.log('getTableProps', getTableProps()); // {role: 'table'}
+
+  // eslint-disable-next-line max-len
+  console.log('headerGroups.getHeaderGroupProps', headerGroups[0].getHeaderGroupProps()); // {key: 'headerGroup_0', role: 'row'}
+  // eslint-disable-next-line max-len
+  console.log('headerGroups', headerGroups); // [0: {headers: Array(4), getHeaderGroupProps: ƒ, getFooterGroupProps: ƒ}]
+
   return (
-    <table>
+    <table {...getTableProps()}>
       <thead>
-        <tr>
-          <th />
-        </tr>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {
+            headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>
+                {column.render('Header')}
+              </th>
+            ))
+}
+          </tr>
+        ))}
       </thead>
-      <tbody>
-        <tr>
-          <td />
-        </tr>
+      <tbody {...getTableBodyProps()}>
+        {
+          rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>
+                    {
+                    cell.render('Cell')
+}
+                  </td>
+                ))}
+              </tr>
+            );
+          })
+
+        }
+
       </tbody>
     </table>
   );
