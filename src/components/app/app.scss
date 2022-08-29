@@ -1,12 +1,19 @@
+:root {
+    background-color: #ffebcd;
+}
+
 .container {
     padding: 2em 2em 0 2em;
+}
+
+.wrat_tytle {
+    text-align: center;
 }
 
 .serchString {
     margin-left: 1rem;
 }
 
-span {
-    width: 220px;
-    display: inline-block;
+.input_blok {
+    margin-bottom: 2em;
 }

@@ -28,14 +28,22 @@ export default function App() {
     <div className="container">
       {loader}
       {popup}
-      <div>Начните вводить название города</div>
-      <div>
-        <input
-          type="text"
-          className="serchString"
-          value={inputValue}
-          onChange={(e) => handelOnChange(e.target.value)}
-        />
+      <div className="wrat_tytle">
+        <h1>Найди города</h1>
+      </div>
+
+      <div className="input_blok">
+        <label htmlFor="sity">
+          Начните вводить название города
+          <input
+            id="sity"
+            placeholder="нарпимер Хабаровск"
+            type="text"
+            className="serchString"
+            value={inputValue}
+            onChange={(e) => handelOnChange(e.target.value)}
+          />
+        </label>
         {sitiesList}
       </div>
       <Table />
@@ -43,4 +51,3 @@ export default function App() {
 
   );
 }
-// KIyrDT5b5883Ys48bDljeWMPqty6kkHF

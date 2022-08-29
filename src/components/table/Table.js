@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
-import { useTable } from 'react-table';
+import { useTable, useFilters, useSortBy } from 'react-table';
 import { useSelector } from 'react-redux';
+import './table.scss';
+import ColumnFilter from '../columnFilter/ColumnFilter';
 
 export default function Table() {
   const citiesTable = useSelector((state) => state.searchSliceReducer.citiesTable);
@@ -24,18 +26,22 @@ export default function Table() {
     {
       Header: 'Наименование города',
       accessor: 'col2',
+      Filter: ColumnFilter,
     },
     {
       Header: 'Полное наименование города',
       accessor: 'col3',
+      Filter: ColumnFilter,
     },
     {
       Header: 'Телефонный код города',
       accessor: 'col4',
+      Filter: ColumnFilter,
     },
   ], []);
 
-  const tableSities = useTable({ columns, data });
+  const tableSities = useTable({ columns, data }, useFilters, useSortBy);
+  console.log(tableSities);
 
   const {
     getTableProps,
@@ -45,12 +51,12 @@ export default function Table() {
     prepareRow,
   } = tableSities;
   // eslint-disable-next-line max-len
-  console.log('getTableProps', getTableProps()); // {role: 'table'}
+  // console.log('getTableProps', getTableProps()); // {role: 'table'}
 
   // eslint-disable-next-line max-len
-  console.log('headerGroups.getHeaderGroupProps', headerGroups[0].getHeaderGroupProps()); // {key: 'headerGroup_0', role: 'row'}
+  // console.log('headerGroups.getHeaderGroupProps', headerGroups[0].getHeaderGroupProps()); // {key: 'headerGroup_0', role: 'row'}
   // eslint-disable-next-line max-len
-  console.log('headerGroups', headerGroups); // [0: {headers: Array(4), getHeaderGroupProps: ƒ, getFooterGroupProps: ƒ}]
+  // console.log('headerGroups', headerGroups); // [0: {headers: Array(4), getHeaderGroupProps: ƒ, getFooterGroupProps: ƒ}]
 
   return (
     <table {...getTableProps()}>
@@ -59,8 +65,17 @@ export default function Table() {
           <tr {...headerGroup.getHeaderGroupProps()}>
             {
             headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>
+              <th className="th" {...column.getHeaderProps(column.getSortByToggleProps())}>
                 {column.render('Header')}
+                {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
+                <span>{
+                column.isSorted
+                  ? column.isSortedDesc
+                    ? ' 🔽'
+                    : ' 🔼'
+                  : ''
+            }
+                </span>
               </th>
             ))
 }
@@ -74,7 +89,7 @@ export default function Table() {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>
+                  <td className="tb" {...cell.getCellProps()}>
                     {
                     cell.render('Cell')
 }
@@ -92,3 +107,4 @@ export default function Table() {
 }
 
 // name: 'Богданович', full_name: 'Богданово (Кировская область, Уржумский)', telcod: 34376
+// column.canFilter ? column.render('Filter') : null
