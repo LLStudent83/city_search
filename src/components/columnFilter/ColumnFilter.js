@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ColumnFilter({ column }) {
-  console.log('Вызвался ColumnFilter');
   const { filterValue, setFilter } = column;
   return (
     <span>
-
+      Поиск:
       <input
+        className="filter_input"
         value={filterValue || ''}
         onChange={(e) => setFilter(e.target.value)}
       />

@@ -1,5 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, { useMemo } from 'react';
-import { useTable, useFilters, useSortBy } from 'react-table';
+import {
+  useTable, useFilters, useSortBy, useGlobalFilter,
+} from 'react-table';
 import { useSelector } from 'react-redux';
 import './table.scss';
 import ColumnFilter from '../columnFilter/ColumnFilter';
@@ -22,6 +25,8 @@ export default function Table() {
     {
       Header: 'Номер п/п',
       accessor: 'col1',
+      Filter: ColumnFilter,
+      disableFilters: true,
     },
     {
       Header: 'Наименование города',
@@ -40,8 +45,10 @@ export default function Table() {
     },
   ], []);
 
-  const tableSities = useTable({ columns, data }, useFilters, useSortBy);
-  console.log(tableSities);
+  const tableSities = useTable({
+    columns,
+    data,
+  }, useGlobalFilter, useFilters, useSortBy);
 
   const {
     getTableProps,
@@ -67,7 +74,9 @@ export default function Table() {
             headerGroup.headers.map((column) => (
               <th className="th" {...column.getHeaderProps(column.getSortByToggleProps())}>
                 {column.render('Header')}
-                {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
+                <div className="column_filter">
+                  {column.canFilter ? column.render('Filter') : null}
+                </div>
                 <span>{
                 column.isSorted
                   ? column.isSortedDesc

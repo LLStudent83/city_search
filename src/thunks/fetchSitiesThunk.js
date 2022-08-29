@@ -23,9 +23,10 @@ export default function fetchSitiesThunkCreator(searchQuery) {
           const madCities = getModifiedArrayOfCities(cities, 'id', 'full_name');
           dispatch(setField({ cities, loading: false, citiesList: madCities }));
         });
-      const madCities = getModifiedArrayOfCities(cities, 'id', 'full_name');
-      dispatch(setField({ cities, loading: false, citiesList: madCities }));
+      // const madCities = getModifiedArrayOfCities(cities, 'id', 'full_name');// cities,
+      // dispatch(setField({cities, loading: false, citiesList: madCities })); // cities,
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
     }
   };
