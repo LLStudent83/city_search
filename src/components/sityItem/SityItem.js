@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import './sityItem.scss';
 
 import addSityInTableSitiesThunkCreator from '../../thunks/addSityInTableSitiesThunk';
 

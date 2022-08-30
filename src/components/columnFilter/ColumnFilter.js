@@ -17,7 +17,7 @@ export default function ColumnFilter({ column }) {
 
 ColumnFilter.propTypes = {
   column: PropTypes.shape({
-    filterValue: PropTypes.string.isRequired,
+    filterValue: PropTypes.string,
     setFilter: PropTypes.func.isRequired,
   }).isRequired,
 };

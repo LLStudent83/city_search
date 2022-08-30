@@ -57,13 +57,6 @@ export default function Table() {
     rows,
     prepareRow,
   } = tableSities;
-  // eslint-disable-next-line max-len
-  // console.log('getTableProps', getTableProps()); // {role: 'table'}
-
-  // eslint-disable-next-line max-len
-  // console.log('headerGroups.getHeaderGroupProps', headerGroups[0].getHeaderGroupProps()); // {key: 'headerGroup_0', role: 'row'}
-  // eslint-disable-next-line max-len
-  // console.log('headerGroups', headerGroups); // [0: {headers: Array(4), getHeaderGroupProps: ƒ, getFooterGroupProps: ƒ}]
 
   return (
     <table {...getTableProps()}>

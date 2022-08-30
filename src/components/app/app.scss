@@ -1,9 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 :root {
     background-color: #ffebcd;
 }
 
 .container {
-    padding: 2em 2em 0 2em;
+    margin: 2em 2em 0 2em;
 }
 
 .wrat_tytle {
@@ -16,4 +20,10 @@
 
 .input_blok {
     margin-bottom: 2em;
+    position: relative;
+}
+
+.filter_input {
+    display: block;
+    width: 100%;
 }
