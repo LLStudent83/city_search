@@ -11,9 +11,9 @@ export default function SitiesList() {
         {
           citiesList.map((obj) => (
             <SityItem
-              key={obj.id}
-              id={obj.id}
-              sityFullName={obj.full_name}
+              key={obj.oktmo}
+              id={obj.oktmo}
+              sityFullName={obj.name_display}
             />
           ))
         }

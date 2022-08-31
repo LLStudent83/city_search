@@ -16,15 +16,19 @@ table {
   }
   
   thead th:nth-child(2) {
-    width: 30%;
+    width: 25%;
   }
   
   thead th:nth-child(3) {
-    width: 50%;
+    width: 45%;
   }
   
   thead th:nth-child(4) {
     width: 15%;
+  }
+
+  thead th:nth-child(5) {
+    width: 10%;
   }
 
 td:first-child,
@@ -51,6 +55,7 @@ th:first-child {
     vertical-align: middle;
 }
 
-.column_filter {
-    // margin-bottom: 0;
+th:last-child {
+    vertical-align: middle;
 }
+

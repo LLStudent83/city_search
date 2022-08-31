@@ -15,16 +15,12 @@ export default function fetchSitiesThunkCreator(searchQuery) {
 
     dispatch(setField({ loading: true, error: null }));
     try {
-      // fetch(`http://geohelper.info/api/v1/cities?apiKey=KIyrDT5b5883Ys48bDljeWMPqty6kkHF&locale%5Blang%5D=ru&filter%5BcountryIso%5D=RU&filter%5BnameStrictLanguage%5D=ru&filter%5Bname%5D=${searchQuery}`)
-      // fetch(`https://nominatim.openstreetmap.org/search?format=json&city=${searchQuery}&country=россия&limit=50`)
-      // fetch(`https://htmlweb.ru/geo/api.php?json&city_name=${searchQuery}&api_key=c1eff0ca350c858eae35441799626a4e`)
-      //   .then((response) => response.json())
-      //   .then((cities) => {
-      //     const madCities = getModifiedArrayOfCities(cities, 'id', 'full_name');
-      //     dispatch(setField({ cities, loading: false, citiesList: madCities }));
-      //   });
-      const madCities = getModifiedArrayOfCities(cities, 'id', 'full_name');// cities,
-      dispatch(setField({ cities, loading: false, citiesList: madCities })); // cities,
+      fetch(`https://api.geotree.ru/search.php?term=${searchQuery}`)
+        .then((response) => response.json())
+        .then((cities) => {
+          const madCities = getModifiedArrayOfCities(cities, 'oktmo', 'name_display');
+          dispatch(setField({ cities, loading: false, citiesList: madCities }));
+        });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
@@ -32,67 +28,28 @@ export default function fetchSitiesThunkCreator(searchQuery) {
   };
 }
 
-const cities = {
-  0: {
-    id: 1916, name: 'Богданович', full_name: 'Богданово (Кировская область, Уржумский)', area: 55, telcod: 34376, latitude: 56.7803,
-  },
-  1: {
-    id: 71361, name: 'Богдановка', full_name: 'Богданово (Кировская область, Уржумский кпвукпвапвп)', area: 8045, telcod: '', latitude: 41.2644,
-  },
-  2: {
-    id: 104723, name: 'Богданово', full_name: 'Богданово (Кировская , Уржумский)', area: 6, telcod: '', latitude: 57.9086,
-  },
-  3: {
-    id: 104772, name: 'Богданово', full_name: 'Богданово (, Уржумский)', area: 1, telcod: '', latitude: 56.0739,
-  },
-  4: {
-    id: 104773, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 27, telcod: '', latitude: 57.0662,
-  },
-  5: {
-    id: 104774, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 59, telcod: '', latitude: 52.231,
-  },
-  6: {
-    id: 104775, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 15, telcod: '', latitude: 51.939,
-  },
-  7: {
-    id: 104776, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 50, telcod: '', latitude: 54.5197,
-  },
-  8: {
-    id: 104777, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 57, telcod: '', latitude: 54.2299,
-  },
-  9: {
-    id: 105743, name: 'Богдановский', full_name: 'Богданово (Кировская область, Уржумский)', area: 6, telcod: '', latitude: 61.4581,
-  },
-  10: {
-    id: 1916, name: 'Богданович', full_name: 'Богданово (Кировская область, Уржумский)', area: 55, telcod: 34376, latitude: 56.7803,
-  },
-  11: {
-    id: 71361, name: 'Богдановка', full_name: 'Богданово (Кировская область, Уржумский кпвукпвапвп)', area: 8045, telcod: '', latitude: 41.2644,
-  },
-  12: {
-    id: 104723, name: 'Богданово', full_name: 'Богданово (Кировская , Уржумский)', area: 6, telcod: '', latitude: 57.9086,
-  },
-  13: {
-    id: 104772, name: 'Богданово', full_name: 'Богданово (, Уржумский)', area: 1, telcod: '', latitude: 56.0739,
-  },
-  14: {
-    id: 104773, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 27, telcod: '', latitude: 57.0662,
-  },
-  15: {
-    id: 104774, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 59, telcod: '', latitude: 52.231,
-  },
-  16: {
-    id: 104775, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 15, telcod: '', latitude: 51.939,
-  },
-  17: {
-    id: 104776, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 50, telcod: '', latitude: 54.5197,
-  },
-  18: {
-    id: 104777, name: 'Богданово', full_name: 'Богданово (Кировская область, Уржумский)', area: 57, telcod: '', latitude: 54.2299,
-  },
-  19: {
-    id: 105743, name: 'Богдановский', full_name: 'Богданово (Кировская область, Уржумский)', area: 6, telcod: '', latitude: 61.4581,
-  },
-  balans: 0,
-  limit: 13,
-};
+// area: 398.477096
+// center_level: "1"
+// center_of: "65,65701"
+// description: "Свердловская область"
+// geo_center: {lon: '60.607513', lat: '56.82484'}
+// geo_center_inside: true
+// geo_inside: {lon: '60.56391', lat: '56.824202'}
+// geo_type: "polygon"
+// level: "4"
+// name_display: "город Екатеринбург"
+// name_source: "г Екатеринбург"
+// name_type_full: "город"
+// name_type_short: "г"
+// name_without_type: "Екатеринбург"
+// oktmo: "65701000001"
+// oktmo_short: "65701000001"
+// oktmo_type: "г"
+// parent_level: "2"
+// parents: {level_1: {…}, level_2: {…}}
+// population: "1493749"
+// siblings: "19"
+// unique_display: 0
+// unique_source: 0
+// unique_without_type: 0
+// value: "город Екатеринбург, Свердловская область"

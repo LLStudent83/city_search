@@ -21,15 +21,18 @@ export const searchSlice = createSlice({
         state[keys[i]] = values[i];
       }
     },
-    changeCitiesTable(state, { payload }) {
+    citiesTableAdd(state, { payload }) {
       state.citiesTable.push(payload.cityObj);
+    },
+    citiesTableDel(state, { payload }) {
+      state.citiesTable.splice(payload.nummRow, 1);
     },
 
   },
 });
 
 export const {
-  setField, changeCitiesTable,
+  setField, citiesTableAdd, citiesTableDel,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;
