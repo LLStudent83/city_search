@@ -1,4 +1,3 @@
-// import { useSelector } from 'react-redux';
 import { citiesTableAdd, setField } from '../features/search/searchSlice';
 import getCityById from '../scripts/getCityById';
 

@@ -5,14 +5,14 @@ import './sityItem.scss';
 import addSityInTableSitiesThunkCreator from '../../thunks/addSityInTableSitiesThunk';
 
 export default function SityItem({ sityFullName, id }) {
-  // const cities = useSelector((state) => state.cities);
   const dispatch = useDispatch();
+
   function handlerClick(id) {
     dispatch(addSityInTableSitiesThunkCreator(id));
   }
   return (
     <li className="sityItem">
-      <button onClick={() => handlerClick(id)}>
+      <button className="sityItemButton" onClick={() => handlerClick(id)}>
         {sityFullName}
       </button>
     </li>
@@ -21,5 +21,5 @@ export default function SityItem({ sityFullName, id }) {
 
 SityItem.propTypes = {
   sityFullName: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
